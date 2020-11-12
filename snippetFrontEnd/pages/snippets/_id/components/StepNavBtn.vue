@@ -7,7 +7,7 @@
       } : {}"
       class="block mb-2 p-3 bg-blue-500 rounded-lg "
       :class="{
-        'opacity-25 pointer-event-none': !step
+        'opacity-25 cursor-not-allowed': !step
       }"
       title="step Btn"
   >

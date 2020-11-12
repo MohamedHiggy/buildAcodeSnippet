@@ -3,6 +3,7 @@
 namespace App;
 
 use App\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 
@@ -10,7 +11,8 @@ class Snippet extends Model
 {
     protected $fillable = [
         'uuid',
-        'title'
+        'title',
+        'is_public'
     ];
 
 
@@ -32,6 +34,14 @@ class Snippet extends Model
         static::creating(function (Snippet $snippet) {
             $snippet->uuid = Str::uuid();
         });
+    }
+
+    public function isPublic() {
+        return $this->is_public;
+    }
+
+    public function scopePublic(Builder $builder) {
+        return $builder->where('is_public', true);
     }
 
     public function steps() {

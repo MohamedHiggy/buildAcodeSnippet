@@ -1,14 +1,31 @@
 <template>
   <div class="container mt-16">
     <div class="flex justify-between">
-      <h1 class="text-xl text-gray-600 font-medium mb-6">Your snippets (1)</h1>
+      <h1 class="text-xl text-gray-600 font-medium mb-6">Your snippets ({{snippets.length}})</h1>
       <a href="#" @click.prevent="createSnippet">+ Create a snippet</a>
     </div>
+      <div v-if="snippets.length === 0" class="text-gray-600 font-medium">
+        there is no snippets here. You know what to do.
+      </div>
+      <DashboardSnippetCard @deleted="removeSnippet" v-for="snippet in snippets" :key="snippet.uuid" :snippet="snippet"/>
   </div>
 </template>
 
 <script>
+import DashboardSnippetCard from "./components/DashboardSnippetCard"
   export default {
+    middleware: ["auth"],
+    head() {
+      return {
+        title: "Dashboard"
+      };
+    },
+    components:{ DashboardSnippetCard },
+    data() {
+      return {
+        snippets: []
+      }
+    },
     methods: {
       async createSnippet() {
         let snippet = await this.$axios.$post('snippets');
@@ -18,6 +35,15 @@
             id: snippet.data.uuid
           }
         })
+      },
+      removeSnippet(snippet) {
+        this.snippets = this.snippets.filter((e) => e.uuid !== snippet.uuid)
+      }
+    },
+    async asyncData({app}) {
+      let snippets =  await app.$axios.$get('me/snippets')
+      return {
+        snippets: snippets.data
       }
     },
   }

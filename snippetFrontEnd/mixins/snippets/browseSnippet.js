@@ -1,4 +1,5 @@
 import { orderBy as _orderBy } from "lodash";
+import hotkeys from "hotkeys-js";
 export default {
     computed: {
         //built in nuxt to create filter of order
@@ -23,5 +24,36 @@ export default {
         currentStepIndex() {
             return this.orderedStepsAsc.map((e) => e.uuid).indexOf(this.currentStep.uuid)
         },
+    },
+    mounted() {
+        this.keyboardShortcuts();
+    },
+    methods: {
+
+        goToStep(step) {
+            this.$router.push({
+                query: {
+                    step: step.uuid
+                }
+            })
+        },
+        keyboardShortcuts() {
+            hotkeys('ctrl+shift+left, ctrl+shift+right', (event, handler) => {
+                switch (handler.key) {
+                    case 'ctrl+shift+left':
+                        console.log('prev')
+                        if (this.prevStep) {
+                            this.goToStep(this.prevStep)
+                        }
+                        break;
+                    case 'ctrl+shift+right':
+                        console.log('next')
+                        if (this.nextStep) {
+                            this.goToStep(this.nextStep)
+                        }
+                        break;
+                }
+            })
+        }
     },
 }

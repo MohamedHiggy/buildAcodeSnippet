@@ -39,6 +39,7 @@ class SnippetTransformer extends TransformerAbstract
             'uuid' => $snippet->uuid,
             'title' => $snippet->title ? : '',
             'steps_count' => $snippet->steps->count(),
+            'is_public' => $snippet->is_public
         ];
     }
 

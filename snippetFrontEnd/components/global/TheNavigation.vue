@@ -2,7 +2,7 @@
   <div class="bg-white py-6 lg:py-0 flex items-center">
     <div class="container flex flex-wrap items-center lg:flex-no-wrap">
       <nuxt-link :to="{ name: 'index' }" class="mr-10 flex-shrink-0">
-        <img src="@/assets/logo.svg" alt="Logo" class="h-8" />
+        <img src="@/assets/logo.png" alt="Logo" class="h-8" />
       </nuxt-link>
       <a
         href="#"
@@ -29,7 +29,7 @@
         <ul class="lg:h-24 lg:flex items-center w-full lg:w-auto">
           <li>
             <nuxt-link
-              :to="{ name: 'index' }"
+              :to="{ name: 'browse' }"
               class="text-lg text-gray-700 lg:py-4 lg:px-4"
             >
               browse
@@ -58,7 +58,7 @@
             </li>
             <li>
               <nuxt-link
-                :to="{ name: 'index' }"
+                :to="{ name: 'account' }"
                 class="text-lg text-gray-700 lg:py-4 lg:px-4"
               >
                 {{$auth.user.name}}
@@ -85,7 +85,7 @@
             </li>
             <li>
               <nuxt-link
-                :to="{ name: 'index' }"
+                :to="{ name: 'auth-signup' }"
                 class="text-lg text-gray-700 lg:py-4 lg:px-4"
               >
                 Create an account

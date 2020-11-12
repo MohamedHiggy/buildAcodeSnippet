@@ -13,10 +13,10 @@ export default {
             { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Rubik:wght@400;500&display=swap' }
         ]
     },
-
+    env: env.parsed,
     // Global CSS (https://go.nuxtjs.dev/config-css)
     css: [
-        "~/assets/styles/app.css"
+        "~/assets/styles/app.scss"
     ],
 
     // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
@@ -39,6 +39,9 @@ export default {
         baseURL: env.parsed.API_URL
     },
     auth: {
+        redirect: {
+            login: '/auth/login'
+        },
         strategies: {
             local: {
                 endpoints: {

@@ -18,7 +18,7 @@ class CreateStepsTable extends Migration
             $table->uuid('uuid');
             $table->string('title')->nullable();
             $table->text('body')->nullable();
-            $table->unsignedBigInteger('order');
+            $table->decimal('order');
             $table->unsignedBigInteger('snippet_id');
             $table->foreign("snippet_id")->on("snippets")->references("id")->onDelete("cascade");
             $table->timestamps();

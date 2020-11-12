@@ -4,10 +4,15 @@
       <div class="container py-10 pb-16">
         <div class="w-10/12">
           <h1 class="text-4xl text-gray-700 font-medium leading-tight mb-2">
-            {{snippet.title}}
+            {{snippet.title || 'Untitled Snippet'}}
           </h1>
           <div class="text-gray-600">
-            Created by <nuxt-link :to="{}">{{snippet.author.data.name}}</nuxt-link>
+            Created by <nuxt-link :to="{
+              name: 'author-id',
+              params: {
+                id: snippet.author.data.username
+              }
+            }">{{snippet.author.data.name}}</nuxt-link>
           </div>
         </div>
       </div>
@@ -38,7 +43,7 @@
             </StepNavBtn>
           </div>
           <div class="bg-white p-8 rounded-lg text-gray-600 w-full ml-2 mr-2">
-            {{currentStep.body}}
+            <StepMarkDown :value="currentStep.body"/>
           </div>
           <div class="flex flex-row lg:flex-col order-first lg:order-last">
             <StepNavBtn :step="nextStep">
@@ -55,8 +60,8 @@
                 />
               </svg>
             </StepNavBtn>
-
             <nuxt-link
+              v-if="snippet.user.data.owner"
               :to="{name: 'snippets-id-edit', params: {id: snippet.uuid}, query: {step: currentStep.uuid}}"
               class="block mb-2 p-3 bg-blue-500 rounded-lg mr-2 lg:mr-0 ml-2 lg:ml-0 order-first lg:order-last"
               title="Edit step"><svg
@@ -98,15 +103,17 @@
 import StepList from "./components/StepList";
 import StepNavBtn from "./components/StepNavBtn";
 import browseSnippet from "@/mixins/snippets/browseSnippet"
+import StepMarkDown from "@/components/snippets/StepMarkDown"
 export default {
   head() {
     return {
-      title: `${this.snippet.title || "Untitled snippet"}`
+      title: `${this.snippet.title}`
     };
   },
   components: {
     StepList,
-    StepNavBtn
+    StepNavBtn,
+    StepMarkDown
   },
   mixins: [browseSnippet],
   data() {

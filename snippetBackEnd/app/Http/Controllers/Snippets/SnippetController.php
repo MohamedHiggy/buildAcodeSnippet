@@ -11,12 +11,25 @@ class SnippetController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['jwt.auth'])->only('store');
+        $this->middleware(['jwt.auth'])->only('store', 'update');
     }
+
+    public function index(Request $request)
+    {
+        return fractal()->collection(
+            Snippet::take($request->get('limit', 20))->latest()->public()->get()
+        )
+        ->transformWith(new SnippetTransformer())
+        ->parseIncludes([
+            'author'
+        ])
+        ->toArray();
+    }
+
 
     public function show(Snippet $snippet)
     {
-        //authorize!
+        $this->authorize('show', $snippet);
         return fractal()->item($snippet)->transformWith(new SnippetTransformer())->parseIncludes([
             'steps','author','user'
         ])->toArray();
@@ -31,9 +44,19 @@ class SnippetController extends Controller
     public function update(Snippet $snippet , Request $request)
     {
         //authorize!
+        $this->authorize('update', $snippet);
         $this->validate($request, [
-            'title' => 'nullable'
+            'title' => 'nullable',
+
+            'is_public' => 'nullable|boolean'
         ]);
-        $snippet->update($request->only('title'));
+        $snippet->update($request->only('title', 'is_public'));
+    }
+
+    public function destroy(Snippet $snippet , Request $request)
+    {
+        //authorize!
+        $this->authorize('destroy', $snippet);
+        $snippet->delete();
     }
 }
