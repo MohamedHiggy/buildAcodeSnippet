@@ -1,13 +1,18 @@
 <template>
   <div class="container mt-16">
     <div class="flex justify-between">
-      <h1 class="text-xl text-gray-600 font-medium mb-6">Your snippets ({{snippets.length}})</h1>
+      <template v-if="snippets.length">
+        <h1 class="text-xl text-gray-600 font-medium mb-6">Your snippets ({{snippets.length}})</h1>
+      </template>
+      <template v-else>
+        <h1 class="text-xl text-gray-600 font-medium mb-6">You don't have any snippet</h1>
+      </template>
       <a href="#" @click.prevent="createSnippet">+ Create a snippet</a>
     </div>
-      <div v-if="snippets.length === 0" class="text-gray-600 font-medium">
-        there is no snippets here. You know what to do.
-      </div>
-      <DashboardSnippetCard @deleted="removeSnippet" v-for="snippet in snippets" :key="snippet.uuid" :snippet="snippet"/>
+    <div v-if="snippets.length === 0" class="text-gray-600 font-medium">
+      there is no snippets here. You know what to do.
+    </div>
+    <DashboardSnippetCard @deleted="removeSnippet" v-for="snippet in snippets" :key="snippet.uuid" :snippet="snippet"/>
   </div>
 </template>
 
@@ -35,9 +40,11 @@ import DashboardSnippetCard from "./components/DashboardSnippetCard"
             id: snippet.data.uuid
           }
         })
+        this.$toast.success('successfuly snippet created');
       },
       removeSnippet(snippet) {
         this.snippets = this.snippets.filter((e) => e.uuid !== snippet.uuid)
+        this.$toast.info('successfuly snippet deleted');
       }
     },
     async asyncData({app}) {

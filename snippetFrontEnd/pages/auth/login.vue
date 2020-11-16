@@ -87,9 +87,11 @@ export default {
         await this.$auth.loginWith("local", {
           data: this.form,
         });
+        this.$toast.success('successfuly authenticated');
       } catch (error) {
         if (error.response.status === 422) {
           this.validation = error.response.data.errors;
+          this.$toast.error('authentication failed');
         }
       }
     },

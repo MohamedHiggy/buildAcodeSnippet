@@ -165,9 +165,11 @@ export default {
             password: this.form.password
           }
         });
+        this.$toast.success('successfuly created account');
       } catch (error) {
         if (error.response.status === 422) {
           this.validation = error.response.data.errors;
+          this.$toast.error('something went wrong when you creating account');
         }
       }
     }

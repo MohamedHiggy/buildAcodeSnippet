@@ -32,8 +32,20 @@ export default {
     modules: [
         // https://go.nuxtjs.dev/axios
         '@nuxtjs/axios',
-        '@nuxtjs/auth'
+        '@nuxtjs/auth',
+        "@nuxtjs/toast"
     ],
+    toast: {
+        position: 'top-right',
+        duration: 1500,
+        theme: "outline",
+        action: {
+            text: 'cancel',
+            onClick: (e, toastObject) => {
+                toastObject.goAway(0);
+            }
+        }
+    },
     // Axios module configuration (https://go.nuxtjs.dev/config-axios)
     axios: {
         baseURL: env.parsed.API_URL

@@ -11,9 +11,16 @@
       </div>
     </div>
     <div class="container">
-      <h1 class="text-xl text-gray-600 font-medium mb-6">
-        Public snippets ({{snippets.length}})
-      </h1>
+      <template v-if="snippets.length">
+        <h1 class="text-xl text-gray-600 font-medium mb-6">
+          Public snippets ({{snippets.length}})
+        </h1>
+      </template>
+      <template v-else>
+        <h1 class="text-xl text-gray-600 font-medium mb-6">
+          {{user.name}} don't have snippets
+        </h1>
+      </template>
       <SnippetCard v-for="snippet in snippets" :key="snippet.uuid" :snippet="snippet"/>
     </div>
   </div>

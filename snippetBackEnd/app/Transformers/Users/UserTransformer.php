@@ -36,7 +36,8 @@ class UserTransformer extends TransformerAbstract
             "id" => $user->id,
             "email" => $user->email,
             "name" => $user->name,
-            "username" => $user->username
+            "username" => $user->username,
+            'google2fa_enabled' => $user->google2fa_enabled
         ];
     }
 }

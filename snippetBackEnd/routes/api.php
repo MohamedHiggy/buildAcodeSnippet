@@ -4,6 +4,8 @@ Route::group(['prefix' => 'auth', "namespace" => "Auth"], function () {
     Route::post('login', "LoginController");
     Route::post('signup', "SignUpController");
     Route::get('me', "MeController");
+    Route::get('otp', "Otp\OtpController@index");
+    Route::post('otp', "Otp\OtpController@store");
     Route::post('logout', "SignOutController");
 });
 

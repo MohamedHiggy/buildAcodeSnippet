@@ -8,7 +8,12 @@
       </div>
     </div>
     <div class="container">
-      <h1 class="text-xl text-gray-600 font-medium mb-6">All snippets ({{snippets.length}})</h1>
+      <template v-if="snippets.length">
+          <h1 class="text-xl text-gray-600 font-medium mb-6">All snippets ({{snippets.length}})</h1>
+      </template>
+      <template v-else>
+          <h1 class="text-xl text-center text-gray-600 font-medium mb-6">No snippets to browse</h1>
+      </template>
       <BrowseSnipppetCard v-for="snippet in snippets" :key="snippet.uuid" :snippet="snippet"/>
     </div>
   </div>
