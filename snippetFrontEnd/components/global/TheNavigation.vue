@@ -32,15 +32,7 @@
               :to="{ name: 'browse' }"
               class="text-lg text-gray-700 lg:py-4 lg:px-4"
             >
-              browse
-            </nuxt-link>
-          </li>
-          <li>
-            <nuxt-link
-              :to="{ name: 'index' }"
-              class="text-lg text-gray-700 lg:py-4 lg:px-4"
-            >
-              search
+              Browse
             </nuxt-link>
           </li>
         </ul>

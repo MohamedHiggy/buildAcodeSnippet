@@ -41,13 +41,11 @@ export default {
             hotkeys('ctrl+shift+left, ctrl+shift+right', (event, handler) => {
                 switch (handler.key) {
                     case 'ctrl+shift+left':
-                        console.log('prev')
                         if (this.prevStep) {
                             this.goToStep(this.prevStep)
                         }
                         break;
                     case 'ctrl+shift+right':
-                        console.log('next')
                         if (this.nextStep) {
                             this.goToStep(this.nextStep)
                         }

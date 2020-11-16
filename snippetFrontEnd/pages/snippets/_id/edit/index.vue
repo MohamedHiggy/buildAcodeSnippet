@@ -177,7 +177,6 @@ export default {
     //update snippet when typing
     "snippet.title": {
       handler: _debounce(async function(title) {
-        console.log(title);
         await this.$axios.$patch(`snippets/${this.snippet.uuid}`, {
           title
         });
@@ -187,7 +186,6 @@ export default {
     //update snippet privacy
     "snippet.is_public": {
       handler: _debounce(async function(isPublic) {
-        console.log(isPublic);
         await this.$axios.$patch(`snippets/${this.snippet.uuid}`, {
           is_public : isPublic
         });

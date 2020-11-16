@@ -2,19 +2,20 @@
 
 namespace App;
 
+use App\Transformers\Snippets\SnippetTransformer;
 use App\User;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 class Snippet extends Model
 {
+
     protected $fillable = [
         'uuid',
         'title',
         'is_public'
     ];
-
 
 
     public function getRouteKeyName()
