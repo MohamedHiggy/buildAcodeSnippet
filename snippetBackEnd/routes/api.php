@@ -6,6 +6,7 @@ Route::group(['prefix' => 'auth', "namespace" => "Auth"], function () {
     Route::get('me', "MeController");
     Route::get('otp', "Otp\OtpController@index");
     Route::post('otp', "Otp\OtpController@store");
+    Route::delete('otp', "Otp\OtpController@destroy");
     Route::post('logout', "SignOutController");
 });
 

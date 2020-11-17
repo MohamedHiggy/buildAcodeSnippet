@@ -5,103 +5,103 @@
         {{ $auth.user.name }}
       </h1>
       <div class="w-full md:w-6/12 lg:w-4/12 mb-6">
-          <form
-            action="#"
-            class="mb-8"
-            @submit.prevent="Submit"
-          >
-            <div class="mb-6">
-              <label
-                :class="{ 'text-red-500': validation.email }"
-                for="Email"
-                class="block text-gray-600 font-medium mb-2"
-                >Email address</label
-              >
-              <input
-                :class="{ 'border-red-500': validation.email }"
-                type="email"
-                class="border-2 border-gray-400 rounded block w-full p-3"
-                name="email"
-                id="email"
-                v-model="form.email"
-              />
-              <div v-if="validation.email" class="text-red-500 mb-4 text-sm mt-1">
-                {{ validation.email[0] }}
-              </div>
+        <form
+          action="#"
+          class="mb-8"
+          @submit.prevent="Submit"
+        >
+          <div class="mb-6">
+            <label
+              :class="{ 'text-red-500': validation.email }"
+              for="Email"
+              class="block text-gray-600 font-medium mb-2"
+              >Email address</label
+            >
+            <input
+              :class="{ 'border-red-500': validation.email }"
+              type="email"
+              class="border-2 border-gray-400 rounded block w-full p-3"
+              name="email"
+              id="email"
+              v-model="form.email"
+            />
+            <div v-if="validation.email" class="text-red-500 mb-4 text-sm mt-1">
+              {{ validation.email[0] }}
             </div>
-            <div class="mb-6">
-              <label
-                :class="{ 'text-red-500': validation.name }"
-                for="Name"
-                class="block text-gray-600 font-medium mb-2"
-                >Name</label
-              >
-              <input
-                :class="{ 'border-red-500': validation.name }"
-                type="text"
-                class="border-2 border-gray-400 rounded block w-full p-3"
-                name="name"
-                id="name"
-                v-model="form.name"
-              />
-              <div v-if="validation.name" class="text-red-500 mb-4 text-sm mt-1">
-                {{ validation.name[0] }}
-              </div>
+          </div>
+          <div class="mb-6">
+            <label
+              :class="{ 'text-red-500': validation.name }"
+              for="Name"
+              class="block text-gray-600 font-medium mb-2"
+              >Name</label
+            >
+            <input
+              :class="{ 'border-red-500': validation.name }"
+              type="text"
+              class="border-2 border-gray-400 rounded block w-full p-3"
+              name="name"
+              id="name"
+              v-model="form.name"
+            />
+            <div v-if="validation.name" class="text-red-500 mb-4 text-sm mt-1">
+              {{ validation.name[0] }}
             </div>
-            <div class="mb-6">
-              <label
-                :class="{ 'text-red-500': validation.username }"
-                for="Username"
-                class="block text-gray-600 font-medium mb-2"
-                >Username</label
-              >
-              <input
-                :class="{ 'border-red-500': validation.username }"
-                type="text"
-                class="border-2 border-gray-400 rounded block w-full p-3"
-                name="username"
-                id="username"
-                v-model="form.username"
-              />
-              <div v-if="validation.username" class="text-red-500 mb-4 text-sm mt-1">
-                {{ validation.username[0] }}
-              </div>
+          </div>
+          <div class="mb-6">
+            <label
+              :class="{ 'text-red-500': validation.username }"
+              for="Username"
+              class="block text-gray-600 font-medium mb-2"
+              >Username</label
+            >
+            <input
+              :class="{ 'border-red-500': validation.username }"
+              type="text"
+              class="border-2 border-gray-400 rounded block w-full p-3"
+              name="username"
+              id="username"
+              v-model="form.username"
+            />
+            <div v-if="validation.username" class="text-red-500 mb-4 text-sm mt-1">
+              {{ validation.username[0] }}
             </div>
-            <div class="mb-6">
-              <label
-                :class="{ 'text-red-500': validation.password }"
-                for="password"
-                class="block text-gray-600 font-medium mb-2"
-                >Password</label
-              >
-              <input
-                :class="{ 'border-red-500': validation.password }"
-                type="password"
-                class="border-2 border-gray-400 rounded block w-full p-3"
-                name="password"
-                id="password"
-                v-model="form.password"
-              />
-              <div
-                v-if="validation.password"
-                class="text-red-500 mb-4 text-sm mt-1"
-              >
-                {{ validation.password[0] }}
-              </div>
-              <div class="text-sm text-gray-500">
-                Leave blank to keep the same
-              </div>
+          </div>
+          <div class="mb-6">
+            <label
+              :class="{ 'text-red-500': validation.password }"
+              for="password"
+              class="block text-gray-600 font-medium mb-2"
+              >Password</label
+            >
+            <input
+              :class="{ 'border-red-500': validation.password }"
+              type="password"
+              class="border-2 border-gray-400 rounded block w-full p-3"
+              name="password"
+              id="password"
+              v-model="form.password"
+            />
+            <div
+              v-if="validation.password"
+              class="text-red-500 mb-4 text-sm mt-1"
+            >
+              {{ validation.password[0] }}
             </div>
-            <div class="mb-6">
-              <button
-                class="bg-blue-500 text-white p-4 rounded text-center font-medium"
-                type="submit"
-              >
-                Update
-              </button>
+            <div class="text-sm text-gray-500">
+              Leave blank to keep the same
             </div>
-          </form>
-          <div class="text-gray-600">
+          </div>
+          <div class="mb-6">
+            <button
+              class="bg-blue-500 text-white p-4 rounded text-center font-medium"
+              type="submit"
+            >
+              Update
+            </button>
+          </div>
+        </form>
+        <div class="text-gray-600">
           <nuxt-link
             :to="{
               name: 'author-id',
@@ -111,6 +111,23 @@
             }"
             >View your public profile</nuxt-link
           >
+
+        </div>
+
+        <div class="w-full py-5">
+          <template v-if="!$auth.user.google2fa_enabled">
+            <nuxt-link :to="{ name: 'account-otp-enable'}"
+            class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+              Enable 2FA
+            </nuxt-link>
+          </template>
+          <template v-else>
+            <nuxt-link
+            :to="{ name: 'account-otp-disable'}"
+            class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+              Disable 2FA
+            </nuxt-link>
+          </template>
         </div>
       </div>
     </div>

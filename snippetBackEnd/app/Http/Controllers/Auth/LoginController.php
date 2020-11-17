@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
+use Google2FA;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -24,6 +25,24 @@ class LoginController extends Controller
                     ]
                 ]
             ], 422);
+        }
+
+        $user = $request->user();
+        if ($user->google2fa_enabled && !$request->otp) {
+            return response([
+                'reason' => [
+                    'REQUIRES_OTP'
+                ]
+            ], 401);
+        }
+        if ($user->google2fa_enabled && $request->otp) {
+            if (!Google2FA::verifyKey($user->google2fa_secret, $request->otp)) {
+                return response([
+                    'reason' => [
+                        'INCORRECT_OTP'
+                    ]
+                ], 401);
+            }
         }
 
         return response()->json([
